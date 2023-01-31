@@ -48,7 +48,7 @@ namespace leetcode_solutions
         }
     }
 
-    public class Pair : IEquatable<Pair>
+    public sealed class Pair : IEquatable<Pair>
     {
         public int Element0 { get; private set; }
         public int Element1 { get; private set; }
@@ -87,20 +87,6 @@ namespace leetcode_solutions
             }
 
             return false;
-        }
-
-        public override bool Equals(object? obj)
-        {
-            if (obj == null ||
-                obj.GetType() != typeof(Pair))
-                return false;
-
-            return Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (int)(Math.Pow(2, Element0) + Math.Pow(2, Element1) + Math.Pow(2, Element2));
         }
     }
 }
