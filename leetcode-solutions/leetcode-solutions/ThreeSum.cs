@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace leetcode_solutions
 {
     public class ThreeSum
     {
         //Brute force solution
-        public IList<IList<int>> Solution(int[] arr)
+        public IList<IList<int>> BruteForceSolution(int[] arr)
         {
             var len = arr.Length;
             var pairs = new List<Pair>();
@@ -46,6 +48,55 @@ namespace leetcode_solutions
 
             return result;
         }
+
+        public IList<IList<int>> Solution(int[] nums)
+        {
+            var result = new List<IList<int>>();
+            var len = nums.Length;
+            Array.Sort(nums);
+
+            for (int i = 0; i < len - 2; i++)
+            {
+                if (i == 0 || i > 0 && nums[i] != nums[i - 1])
+                {
+                    var left = i + 1;
+                    var right = len - 1;
+
+                    while (left < right)
+                    {
+                        if (nums[i] + nums[left] + nums[right] == 0)
+                        {
+                            result.Add(new List<int> { nums[i], nums[left], nums[right] });
+
+                            while (left < right &&
+                                   nums[left] == nums[left + 1])
+                            {
+                                left++;
+                            }
+                            while (left < right &&
+                                   nums[right] == nums[right - 1])
+                            {
+                                right--;
+                            }
+
+                            left++;
+                            right--;
+                        }
+                        else if (nums[i] + nums[left] + nums[right] > 0)
+                        {
+                            right--;
+                        }
+                        else
+                        {
+                            left++;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 
     public sealed class Pair : IEquatable<Pair>
