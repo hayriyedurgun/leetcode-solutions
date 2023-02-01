@@ -17,10 +17,13 @@ namespace leetcode_solutions
             //};
             //matrixZeroes.SetZeroes(arr);
 
-            var sum = new TwoSum();
-            var result = sum.Solution(new int[] { 2, 7, 11, 15 }, 9);
-            result = sum.Solution(new int[] { 3, 2, 4 }, 6);
-            result = sum.Solution(new int[] { 3, 3 }, 6);
+            //var sum = new TwoSum();
+            //var result = sum.Solution(new int[] { 2, 7, 11, 15 }, 9);
+            //result = sum.Solution(new int[] { 3, 2, 4 }, 6);
+            //result = sum.Solution(new int[] { 3, 3 }, 6);
+
+            var roman = new RomanToInteger();
+            var result = roman.Solution("MCDLXXVI");
         }
     }
 }
